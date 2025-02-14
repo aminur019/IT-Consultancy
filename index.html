@@ -1,948 +1,1001 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Careers & Contact</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-  <!-- AOS CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
-  <style>
-     body {
-            font-family: 'Montserrat', sans-serif;
-        }
-    .nav-item::after {
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Careers & Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .nav-item::after {
         content: '';
         display: block;
         width: 0;
         height: 2px;
-        background: #1D4ED8; /* Tailwind's blue-600 */
+        background: #1D4ED8;
+        /* Tailwind's blue-600 */
         transition: width .3s;
-    }
-    .nav-item:hover::after {
+      }
+
+      .nav-item:hover::after {
         width: 100%;
-    }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  .slider {
-            position: relative;
-            overflow: hidden;
+      }
+
+      .slider {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .navigation-manual {
+        position: absolute;
+        width: 100%;
+        bottom: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .manual-btn {
+        border: 2px solid #ffffff;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .manual-btn:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      .manual-btn:hover {
+        background: #ffffff;
+      }
+
+      input[name="radio-btn"] {
+        display: none;
+      }
+
+      #radio1:checked~.slides {
+        transform: translateX(0);
+      }
+
+      #radio2:checked~.slides {
+        transform: translateX(-100%);
+      }
+
+      #radio3:checked~.slides {
+        transform: translateX(-200%);
+      }
+
+      #radio1:checked~.navigation-manual label[for="radio1"],
+      #radio2:checked~.navigation-manual label[for="radio2"],
+      #radio3:checked~.navigation-manual label[for="radio3"] {
+        background: #ffffff;
+      }
+
+      #radio1:checked~.text-content .text1,
+      #radio2:checked~.text-content .text2,
+      #radio3:checked~.text-content .text3 {
+        display: block;
+        animation: fadeInUp 1s, fadeOutUp 1s 4s;
+      }
+
+      .text-content div {
+        display: none;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .slide {
-            min-width: 100%;
-            box-sizing: border-box;
+      }
+
+      @keyframes fadeOutUp {
+        from {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .navigation-manual {
-            position: absolute;
-            width: 100%;
-            bottom: 20px;
-            display: flex;
-            justify-content: center;
+
+        to {
+          opacity: 0;
+          transform: translateY(-20px);
         }
-        .manual-btn {
-            border: 2px solid #ffffff;
-            padding: 5px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
+      }
+
+      .control-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .control-btn.left {
+        left: 10px;
+      }
+
+      .control-btn.right {
+        right: 10px;
+      }
+
+      .team-member:hover .overlay {
+        opacity: 1;
+      }
+
+      .team-member:hover .info {
+        opacity: 0;
+      }
+
+      @keyframes text-flicker {
+        0% {
+          opacity: 1;
         }
-        .manual-btn:not(:last-child) {
-            margin-right: 10px;
+
+        50% {
+          opacity: 0.5;
         }
-        .manual-btn:hover {
-            background: #ffffff;
+
+        100% {
+          opacity: 1;
         }
-        input[name="radio-btn"] {
-            display: none;
-        }
-        #radio1:checked ~ .slides {
-            transform: translateX(0);
-        }
-        #radio2:checked ~ .slides {
-            transform: translateX(-100%);
-        }
-        #radio3:checked ~ .slides {
-            transform: translateX(-200%);
-        }
-        #radio1:checked ~ .navigation-manual label[for="radio1"],
-        #radio2:checked ~ .navigation-manual label[for="radio2"],
-        #radio3:checked ~ .navigation-manual label[for="radio3"] {
-            background: #ffffff;
-        }
-        #radio1:checked ~ .text-content .text1,
-        #radio2:checked ~ .text-content .text2,
-        #radio3:checked ~ .text-content .text3 {
-            display: block;
-            animation: fadeInUp 1s, fadeOutUp 1s 4s;
-        }
-        .text-content div {
-            display: none;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeOutUp {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
-        .control-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .control-btn.left {
-            left: 10px;
-        }
-        .control-btn.right {
-            right: 10px;
-        }
-  
-  
-  
-  
-        .team-member:hover .overlay {
-            opacity: 1;
-        }
-        .team-member:hover .info {
-            opacity: 0;
-        }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  @keyframes text-flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        .flicker {
-            animation: text-flicker 1.5s infinite;
-        }
-  
-  
-  
-  
-  
-  
-  
-  
-    .card:hover .overlay {
-      opacity: 1;
-    }
-    .card:hover .title {
-      opacity: 0;
-    }
-    .gradient-border {
-      border-image: linear-gradient(45deg, #42a5f5, #66bb6a) 1;
-    }
-	iframe{width:650px}
-    @media (max-width: 768px) {
-      .mobile-border {
-        border-left-width: 4px;
-        border-bottom-width: 4px;
-        border-top-width: 0;
-        border-right-width: 0;
+      }
+
+      .flicker {
+        animation: text-flicker 1.5s infinite;
+      }
+
+      .Career-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .Career-card img {
+        transition: transform 0.3s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .Career-card:hover img {
+        transform: scale(1.1);
+      }
+
+      .Career-card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(100% - 4rem);
+        /* Adjusted width */
+        height: calc(100% - 4rem);
+        /* Adjusted height */
+        background: rgba(255, 105, 180, 0.8);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 1rem;
+        text-align: center;
+        margin: 2rem;
+        /* Added margin */
+      }
+
+      .Career-card:hover .Career-card-overlay {
+        opacity: 1;
+      }
+
+      .Career-view-details {
+        border: 2px solid white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 1rem;
+        transition: background 0.3s ease;
+      }
+
+      .Career-view-details:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .Career-card-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(209, 92, 154, 0.52), rgba(0, 0, 0, 0.56));
+        color: white;
+        padding: 01rem;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 1rem;
+        font-size: 1.5rem;
+        /* Increased font size */
+        transition: opacity 0.3s ease;
+      }
+
+      .Career-card:hover .Career-card-title {
+        opacity: 0;
+      }
+
+      .card:hover .overlay {
+        opacity: 1;
+      }
+
+      .card:hover .title {
+        opacity: 0;
+      }
+
+      .gradient-border {
         border-image: linear-gradient(45deg, #42a5f5, #66bb6a) 1;
       }
-	  iframe{width:470px}
-    }
-  </style>
 
-	<script>
-        // Right-click নিষ্ক্রিয় করতে
-        document.addEventListener('contextmenu', (event) => event.preventDefault());
+      iframe {
+        width: 650px
+      }
 
-        // কীবোর্ড শর্টকাট নিষ্ক্রিয় করতে
-        document.addEventListener('keydown', (event) => {
-            if (
-                (event.ctrlKey && event.key === 's') || // Ctrl+S
-                (event.ctrlKey && event.key === 'u') || // Ctrl+U
-                (event.ctrlKey && event.key === 'c') || // Ctrl+C
-                (event.key === 'F12')                  // F12
-            ) {
-                event.preventDefault();
-                alert("This action is disabled on this website.");
-            }
-        });
+      @media (max-width: 768px) {
+        .mobile-border {
+          border-left-width: 4px;
+          border-bottom-width: 4px;
+          border-top-width: 0;
+          border-right-width: 0;
+          border-image: linear-gradient(45deg, #42a5f5, #66bb6a) 1;
+        }
 
-        // Address bar থেকে লিংক কপি প্রতিরোধ (Referrer কে হ্যান্ডল করা)
-        window.onload = () => {
-            if (window.location !== window.parent.location) {
-                window.parent.location = window.location;
-            }
-        };
+        .mobile-border-2 {
+          border-left-width: 0px;
+          border-bottom-width: 0px;
+          border-top-width: 0;
+          border-right-width: 0;
+          border-image: linear-gradient(45deg, #42a5f5, #66bb6a) 1;
+        }
+
+        iframe {
+          width: 470px
+        }
+      }
+    </style>
+    <script>
+      // Right-click নিষ্ক্রিয় করতে
+      document.addEventListener('contextmenu', (event) => event.preventDefault());
+      // কীবোর্ড শর্টকাট নিষ্ক্রিয় করতে
+      document.addEventListener('keydown', (event) => {
+        if (
+          (event.ctrlKey && event.key === 's') || // Ctrl+S
+          (event.ctrlKey && event.key === 'u') || // Ctrl+U
+          (event.ctrlKey && event.key === 'c') || // Ctrl+C
+          (event.key === 'F12') // F12
+        ) {
+          event.preventDefault();
+          alert("This action is disabled on this website.");
+        }
+      });
+      // Address bar থেকে লিংক কপি প্রতিরোধ (Referrer কে হ্যান্ডল করা)
+      window.onload = () => {
+        if (window.location !== window.parent.location) {
+          window.parent.location = window.location;
+        }
+      };
     </script>
-
-	
-</head>
-<body class="font-roboto">
-<header class="w-full bg-white shadow-md fixed top-0 left-0 z-50">
-   <div class="container mx-auto flex items-center justify-between py-4 px-6">
-    <!-- Logo -->
-    <div class="flex items-center">
-     <img alt="Company logo with a modern, minimalistic design" class="h-10 w-auto hover:scale-105 transition-transform duration-300" height="50" src="https://i0.wp.com/shivom.co.uk/wp-content/uploads/2024/03/cropped-shivom_logo_master_transparent_low_res.png?fit=790%2C274&ssl=1" width="150"/>
-    </div>
-    <!-- Navigation Menu -->
-    <nav class="hidden md:flex space-x-8">
-     <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="500" href="#">
-      Home
-     </a>
-     <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="600" href="#">
-      About Us
-     </a>
-     <div class="relative group" data-aos="fade-down" data-aos-duration="700">
-      <a class="nav-item text-gray-800 transition-colors duration-300" href="#">
-       Services
-      </a>
-      <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-       <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="#">
-        Service 1
-       </a>
-       <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="#">
-        Service 2
-       </a>
-       <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="#">
-        Service 3
-       </a>
-      </div>
-     </div>
-     <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="800" href="#">
-      Case Studies
-     </a>
-     <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="900" href="#">
-      Careers
-     </a>
-     <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="1000" href="#">
-      Contact Us
-     </a>
-    </nav>
-    <!-- CTA Button and Optional Icons -->
-    <div class="flex items-center space-x-4">
-	  <div class="relative">
-	 <input class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none" id="search-input" placeholder="Search..." type="text"/> 
-      <button class="text-gray-800 hover:text-blue-600 transition-colors duration-300 focus:outline-none" id="search-icon">
-       <i class="fas fa-search">
-       </i>
-      </button>
-      
-     </div>
-     <a class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300" href="#">
-      Get Started
-     </a>
-   
-	 <div class="hidden">
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      <i class="fab fa-linkedin">
-      </i>
-     </a>
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      <i class="fab fa-twitter">
-      </i>
-     </a>
-	 </div>
-     <!-- Hamburger Menu for Mobile -->
-     <button class="md:hidden text-gray-800 focus:outline-none" id="menu-toggle">
-      <i class="fas fa-bars">
-      </i>
-     </button>
-    </div>
-   </div>
-   <!-- Mobile Menu -->
-   <div class="md:hidden hidden" id="mobile-menu">
-    <nav class="flex flex-col space-y-2 px-6 py-4">
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      Home
-     </a>
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      About Us
-     </a>
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      Services
-     </a>
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      Case Studies
-     </a>
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      Careers
-     </a>
-     <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
-      Contact Us
-     </a>
-     <a class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300" href="#">
-      Get Started
-     </a>
-    </nav>
-   </div>
-  </header>
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  <section class="relative h-screen flex items-center justify-center bg-gray-900 text-white mt-18">
-   <div class="slider w-full h-full">
-    <input checked="" id="radio1" name="radio-btn" type="radio"/>
-    <input id="radio2" name="radio-btn" type="radio"/>
-    <input id="radio3" name="radio-btn" type="radio"/>
-    <div class="slides w-full h-full flex">
-     <div class="slide w-full h-full flex items-center justify-center relative">
-      <img alt="Abstract tech visuals representing cloud computing and data flow" class="absolute w-full h-full object-cover opacity-50" height="1080" src="https://storage.googleapis.com/a1aa/image/z0-WAFo9ZZBQ4PvCqDotvUFWSBVNYJjv5rEXHmK7ouk.jpg" width="1920"/>
-     </div>
-     <div class="slide w-full h-full flex items-center justify-center relative">
-      <img alt="High-tech devices or servers representing cybersecurity or data solutions" class="absolute w-full h-full object-cover opacity-50" height="1080" src="https://storage.googleapis.com/a1aa/image/JdsE-qr0WoOcv-FCj6paVVGZWltXxG-gVrBmZoEjw8o.jpg" width="1920"/>
-     </div>
-     <div class="slide w-full h-full flex items-center justify-center relative">
-      <img alt="Digital transformation themes representing business growth and team collaboration" class="absolute w-full h-full object-cover opacity-50" height="1080" src="https://storage.googleapis.com/a1aa/image/unf-IcWDhFPFlGjNb7orsK1-RbD6j9OGnN5-jnwiocs.jpg" width="1920"/>
-     </div>
-    </div>
-    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-content">
-     <div class="text1">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">
-       Empowering Your Business with Cutting-Edge IT Solutions
-      </h1>
-      <p class="text-lg md:text-2xl mb-8">
-       Specialising in Data, AI, Cybersecurity, Cloud, Architecture, and Digital Transformation
-      </p>
-      <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg" href="#services">
-       Explore Our Services
-      </a>
-     </div>
-     <div class="text2">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">
-       Secure Your Data with Our Advanced Cybersecurity Solutions
-      </h1>
-      <p class="text-lg md:text-2xl mb-8">
-       Protecting your business from cyber threats with state-of-the-art security measures
-      </p>
-      <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg" href="#services">
-       Learn More
-      </a>
-     </div>
-     <div class="text3">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">
-       Drive Innovation with Our AI and Cloud Services
-      </h1>
-      <p class="text-lg md:text-2xl mb-8">
-       Transforming your business operations with cutting-edge AI and cloud technologies
-      </p>
-      <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg" href="#services">
-       Discover How
-      </a>
-     </div>
-    </div>
-    <div class="navigation-manual">
-     <label class="manual-btn" for="radio1">
-     </label>
-     <label class="manual-btn" for="radio2">
-     </label>
-     <label class="manual-btn" for="radio3">
-     </label>
-    </div>
-    <button class="control-btn left" onclick="prevSlide()">
-     <i class="fas fa-chevron-left"></i>
-    </button>
-    <button class="control-btn right" onclick="nextSlide()">
-     <i class="fas fa-chevron-right"></i>
-    </button>
-   </div>
-  </section>
-  
-  <script>
-   let counter = 1;
-        const totalSlides = 3;
-        const intervalTime = 5000;
-        let slideInterval;
-
-        function startSlideShow() {
-            slideInterval = setInterval(() => {
-                nextSlide();
-            }, intervalTime);
-        }
-
-        function nextSlide() {
-            counter++;
-            if (counter > totalSlides) {
-                counter = 1;
-            }
-            document.getElementById('radio' + counter).checked = true;
-        }
-
-        function prevSlide() {
-            counter--;
-            if (counter < 1) {
-                counter = totalSlides;
-            }
-            document.getElementById('radio' + counter).checked = true;
-        }
-
-        document.querySelectorAll('.control-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                clearInterval(slideInterval);
-                startSlideShow();
-            });
-        });
-
-        startSlideShow();
-  </script>
-  
-  
-  
-  
-  
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  <section class="py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-8" data-aos="fade-up">Working Success</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Total Projects -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-lg font-bold mb-2">Successful IT Solutions Delivered</h3>
-                    <div class="text-6xl font-bold text-blue-600">200+</div>
-                </div>
-                <!-- Completed Projects -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-lg font-bold mb-2">Completed Projects</h3>
-                    <div class="text-6xl font-bold text-blue-600">150+</div>
-                </div>
-                <!-- Running Projects -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-lg font-bold mb-2">Live Projects in Data Science, AI, and Cloud Solutions</h3>
-                    <div class="text-6xl font-bold text-green-600">50+</div>
-                </div>
-                <!-- Happy Clients -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-lg font-bold mb-2">Happy Clients</h3>
-                    <div class="text-6xl font-bold text-yellow-600">150+</div>
-                </div>
-            </div>
+  </head>
+  <body class="font-roboto">
+    <header class="w-full bg-white shadow-md fixed top-0 left-0 z-50">
+      <div class="container mx-auto flex items-center justify-between py-4 px-6">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img alt="Company logo with a modern, minimalistic design" class="h-10 w-auto hover:scale-105 transition-transform duration-300" height="50" src="https://i0.wp.com/shivom.co.uk/wp-content/uploads/2024/03/cropped-shivom_logo_master_transparent_low_res.png?fit=790%2C274&ssl=1" width="150" />
         </div>
+        <!-- Navigation Menu -->
+        <nav class="hidden md:flex space-x-8">
+          <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="500" href="#"> Home </a>
+          <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="600" href="#about-us"> About Us </a>
+          <div class="relative group" data-aos="fade-down" data-aos-duration="700">
+            <a class="nav-item text-gray-800 transition-colors duration-300" href="#service"> Services </a>
+            <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="#"> Service 1 </a>
+              <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="#"> Service 2 </a>
+              <a class="block px-4 py-2 text-gray-800 hover:bg-gray-100" href="#"> Service 3 </a>
+            </div>
+          </div>
+          <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="800" href="#case-studies"> Case Studies </a>
+          <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="900" href="#career"> Careers </a>
+          <a class="nav-item text-gray-800 transition-colors duration-300" data-aos="fade-down" data-aos-duration="1000" href="#contact"> Contact Us </a>
+        </nav>
+        <!-- CTA Button and Optional Icons -->
+        <div class="flex items-center space-x-4">
+          <div class="relative">
+            <input class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none" id="search-input" placeholder="Search..." type="text" />
+            <button class="text-gray-800 hover:text-blue-600 transition-colors duration-300 focus:outline-none" id="search-icon">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300" href="#"> Get Started </a>
+          <div class="hidden">
+            <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+          <!-- Hamburger Menu for Mobile -->
+          <button class="md:hidden text-gray-800 focus:outline-none" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="md:hidden hidden" id="mobile-menu">
+        <nav class="flex flex-col space-y-2 px-6 py-4">
+          <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#"> Home </a>
+          <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#about-us"> About Us </a>
+          <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#service"> Services </a>
+          <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#case-studies"> Case Studies </a>
+          <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#career"> Careers </a>
+          <a class="text-gray-800 hover:text-blue-600 transition-colors duration-300" href="#contact"> Contact Us </a>
+          <a class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300" href="#"> Get Started </a>
+        </nav>
+      </div>
+    </header>
+    <section class="relative h-screen flex items-center justify-center bg-gray-900 text-white mt-18">
+      <div class="slider w-full h-full">
+        <input checked="" id="radio1" name="radio-btn" type="radio" />
+        <input id="radio2" name="radio-btn" type="radio" />
+        <input id="radio3" name="radio-btn" type="radio" />
+        <div class="slides w-full h-full flex">
+          <div class="slide w-full h-full flex items-center justify-center relative">
+            <img alt="Abstract tech visuals representing cloud computing and data flow" class="absolute w-full h-full object-cover opacity-50" height="1080" src="https://storage.googleapis.com/a1aa/image/z0-WAFo9ZZBQ4PvCqDotvUFWSBVNYJjv5rEXHmK7ouk.jpg" width="1920" />
+          </div>
+          <div class="slide w-full h-full flex items-center justify-center relative">
+            <img alt="High-tech devices or servers representing cybersecurity or data solutions" class="absolute w-full h-full object-cover opacity-50" height="1080" src="https://storage.googleapis.com/a1aa/image/JdsE-qr0WoOcv-FCj6paVVGZWltXxG-gVrBmZoEjw8o.jpg" width="1920" />
+          </div>
+          <div class="slide w-full h-full flex items-center justify-center relative">
+            <img alt="Digital transformation themes representing business growth and team collaboration" class="absolute w-full h-full object-cover opacity-50" height="1080" src="https://storage.googleapis.com/a1aa/image/unf-IcWDhFPFlGjNb7orsK1-RbD6j9OGnN5-jnwiocs.jpg" width="1920" />
+          </div>
+        </div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 text-content">
+          <div class="text1">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4"> Empowering Your Business with Cutting-Edge IT Solutions </h1>
+            <p class="text-lg md:text-2xl mb-8"> Specialising in Data, AI, Cybersecurity, Cloud, Architecture, and Digital Transformation </p>
+            <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg" href="#services"> Explore Our Services </a>
+          </div>
+          <div class="text2">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4"> Secure Your Data with Our Advanced Cybersecurity Solutions </h1>
+            <p class="text-lg md:text-2xl mb-8"> Protecting your business from cyber threats with state-of-the-art security measures </p>
+            <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg" href="#services"> Learn More </a>
+          </div>
+          <div class="text3">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4"> Drive Innovation with Our AI and Cloud Services </h1>
+            <p class="text-lg md:text-2xl mb-8"> Transforming your business operations with cutting-edge AI and cloud technologies </p>
+            <a class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full text-lg" href="#services"> Discover How </a>
+          </div>
+        </div>
+        <div class="navigation-manual">
+          <label class="manual-btn" for="radio1"></label>
+          <label class="manual-btn" for="radio2"></label>
+          <label class="manual-btn" for="radio3"></label>
+        </div>
+        <button class="control-btn left" onclick="prevSlide()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="control-btn right" onclick="nextSlide()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
     </section>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+    <script>
+      let counter = 1;
+      const totalSlides = 3;
+      const intervalTime = 5000;
+      let slideInterval;
+
+      function startSlideShow() {
+        slideInterval = setInterval(() => {
+          nextSlide();
+        }, intervalTime);
+      }
+
+      function nextSlide() {
+        counter++;
+        if (counter > totalSlides) {
+          counter = 1;
+        }
+        document.getElementById('radio' + counter).checked = true;
+      }
+
+      function prevSlide() {
+        counter--;
+        if (counter < 1) {
+          counter = totalSlides;
+        }
+        document.getElementById('radio' + counter).checked = true;
+      }
+      document.querySelectorAll('.control-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          clearInterval(slideInterval);
+          startSlideShow();
+        });
+      });
+      startSlideShow();
+    </script>
+    <div class="flex flex-col md:flex-row mb-8 items-center mt-8" data-aos="fade-up" id="career">
+      <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
+        <h2 class="text-4xl font-bold text-center mb-8 flicker" data-aos="fade-down"> About US</h2>
+      </div>
+      <div class="w-full md:w-2/3 p-4 md:border-t-4  gradient-border mobile-border-2">
+        <p class="text-lg text-left mb-8"></p>
+      </div>
+    </div>
     <!-- About Us Section -->
     <section class="relative w-full h-[700px] " data-aos="fade-in">
-        <img alt="Group photo of the team members of the IT consultancy, all smiling and dressed in business attire" class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/a1aa/image/JAHbYiYlrcs-IikD8dk0NERSObF74eEoPBCqTP41ZJU.jpg"/>
-        <div class="absolute bottom-10 left-[25%] transform -translate-x-1/2 bg-white bg-opacity-80 p-6 m-4 text-gray-800 max-w-2xl hidden lg:block" data-aos="fade-up" data-aos-delay="200">
-            <h1 class="text-4xl font-bold mb-4">About Us</h1>
-            <h2 class="text-2xl font-semibold mb-4">Who We Are</h2>
-            <p class="text-lg leading-relaxed">
-                We are a leading IT consultancy focused on Data, AI, Security, Cloud, and Digital Transformation. Our experts work with organizations to unlock the full potential of their technology, driving efficiency, security, and innovation.
-            </p>
-        </div>
+      <img alt="Group photo of the team members of the IT consultancy, all smiling and dressed in business attire" class="absolute inset-0 w-full h-full object-cover" src="https://storage.googleapis.com/a1aa/image/JAHbYiYlrcs-IikD8dk0NERSObF74eEoPBCqTP41ZJU.jpg" />
+      <div class="absolute bottom-10 left-[25%] transform -translate-x-1/2 bg-white bg-opacity-80 p-6 m-4 text-gray-800 max-w-2xl hidden lg:block" data-aos="fade-up" data-aos-delay="200">
+        <h1 class="text-4xl font-bold mb-4">About Us</h1>
+        <h2 class="text-2xl font-semibold mb-4">Who We Are</h2>
+        <p class="text-lg leading-relaxed"> We are a leading IT consultancy focused on Data, AI, Security, Cloud, and Digital Transformation. Our experts work with organizations to unlock the full potential of their technology, driving efficiency, security, and innovation. </p>
+      </div>
     </section>
-
     <!-- Mobile Section -->
     <section class="py-12 px-4 bg-white lg:hidden" data-aos="fade-up">
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="bg-white bg-opacity-80 p-6 m-4 text-gray-800 w-full">
-                <h1 class="text-4xl font-bold mb-4">About Us</h1>
-                <h2 class="text-2xl font-semibold mb-4">Who We Are</h2>
-                <p class="text-lg leading-relaxed">
-                    We are a leading IT consultancy focused on Data, AI, Security, Cloud, and Digital Transformation. Our experts work with organizations to unlock the full potential of their technology, driving efficiency, security, and innovation.
-                </p>
-            </div>
+      <div class="max-w-7xl mx-auto text-center">
+        <div class="bg-white bg-opacity-80 p-6 m-4 text-gray-800 w-full">
+          <h1 class="text-4xl font-bold mb-4">About Us</h1>
+          <h2 class="text-2xl font-semibold mb-4">Who We Are</h2>
+          <p class="text-lg leading-relaxed"> We are a leading IT consultancy focused on Data, AI, Security, Cloud, and Digital Transformation. Our experts work with organizations to unlock the full potential of their technology, driving efficiency, security, and innovation. </p>
         </div>
+      </div>
     </section>
-
     <!-- Team Section -->
-    <section class=" px-4 bg-white">
-        <div class="max-w-8xl mx-auto flex flex-col lg:flex-row">
-            <div class="w-full lg:w-1/4 text-left flex items-center justify-center mb-8 lg:mb-0" data-aos="fade-right" data-aos-delay="100">
-                <div class="transform lg:-rotate-90">
-                    <h1 class="text-4xl font-bold">Meet Our Team</h1>
-                    <h2 class="text-2xl font-semibold">The Minds Behind Our Success</h2>
-                </div>
+    <section class=" px-4 bg-white pb-8 shadow-lg">
+      <div class="max-w-8xl mx-auto flex flex-col lg:flex-row">
+        <div class="w-full lg:w-1/4 text-left flex items-center justify-center mb-8 lg:mb-0" data-aos="fade-right" data-aos-delay="100">
+          <div class="transform lg:-rotate-90">
+            <h1 class="text-4xl font-bold">Meet Our Team</h1>
+            <h2 class="text-2xl font-semibold">The Minds Behind Our Success</h2>
+          </div>
+        </div>
+        <div class="w-full flex flex-wrap">
+          <!-- Team Member 1 -->
+          <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="200">
+            <img alt="Professional headshot of John Doe, a senior consultant with a friendly smile and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/eyvo9-4tGjDD_q_vLI-92WvkmwH0IuNpk4HJ8QtpRZ8.jpg" />
+            <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
+              <p class="text-xs mt-2"> John Doe is a seasoned Senior Consultant with over 10 years of experience in AI and Data Analytics. He has a proven track record of helping organizations leverage data to drive strategic decisions and improve operational efficiency. John is passionate about using technology to solve complex problems and is dedicated to delivering innovative solutions that meet the unique needs of each client. </p>
+              <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
             </div>
-            <div class="w-full flex flex-wrap">
-                <!-- Team Member 1 -->
-                <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="200">
-                    <img alt="Professional headshot of John Doe, a senior consultant with a friendly smile and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/eyvo9-4tGjDD_q_vLI-92WvkmwH0IuNpk4HJ8QtpRZ8.jpg"/>
-                    <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
-                        <p class="text-xs mt-2">
-                            John Doe is a seasoned Senior Consultant with over 10 years of experience in AI and Data Analytics. He has a proven track record of helping organizations leverage data to drive strategic decisions and improve operational efficiency. John is passionate about using technology to solve complex problems and is dedicated to delivering innovative solutions that meet the unique needs of each client.
-                        </p>
-                        <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
-                        <h3 class="text-lg font-bold">John Doe</h3>
-                        <p class="text-sm">Senior Consultant</p>
-                    </div>
-                </div>
-                <!-- Team Member 2 -->
-                <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="300">
-                    <img alt="Professional headshot of Jane Smith, a project manager with a confident expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/tHuENqd7Ydl9ImPqNTzwOe8Bqjv7ofV3-FHzQWv9qb0.jpg"/>
-                    <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
-                        <p class="text-xs mt-2">
-                            Jane Smith is a highly skilled Project Manager specializing in Cloud Solutions and Digital Transformation projects. With a strong background in managing large-scale implementations, Jane excels at coordinating cross-functional teams and ensuring projects are delivered on time and within budget. Her expertise in cloud technologies and digital strategies has helped numerous organizations achieve their transformation goals.
-                        </p>
-                        <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
-                        <h3 class="text-lg font-bold">Jane Smith</h3>
-                        <p class="text-sm">Project Manager</p>
-                    </div>
-                </div>
-                <!-- Team Member 3 -->
-                <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="400">
-                    <img alt="Professional headshot of Michael Brown, a cybersecurity expert with a serious expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/dkuVpLjAzil-5liCkBcrFzuUECWn1XwH6g3xgsBSA0k.jpg"/>
-                    <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
-                        <p class="text-xs mt-2">
-                            Michael Brown is a Cybersecurity Expert with over 15 years of experience in the field. He has extensive knowledge in risk management, threat analysis, and security architecture. Michael has worked with various organizations to develop and implement robust security frameworks that protect critical assets and ensure compliance with industry standards. His dedication to cybersecurity helps clients stay ahead of emerging threats.
-                        </p>
-                        <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
-                        <h3 class="text-lg font-bold">Michael Brown</h3>
-                        <p class="text-sm">Cybersecurity Expert</p>
-                    </div>
-                </div>
-                <!-- Team Member 4 -->
-                <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="500">
-                    <img alt="Professional headshot of Emily Davis, a cloud architect with a friendly smile and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/fbAKqZW7e4mraP_NAvAr6os71s9kn5-Bkf0QWNn6hlg.jpg"/>
-                    <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
-                        <p class="text-xs mt-2">
-                            Emily Davis is a Cloud Architect with a deep understanding of cloud technologies and infrastructure. She has a proven track record of designing and implementing scalable cloud solutions that drive business growth and innovation. Emily's expertise in cloud migration, architecture design, and cost optimization has helped numerous organizations transition to the cloud seamlessly and efficiently.
-                        </p>
-                        <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
-                        <h3 class="text-lg font-bold">Emily Davis</h3>
-                        <p class="text-sm">Cloud Architect</p>
-                    </div>
-                </div>
-                <!-- Team Member 5 -->
-                <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="600">
-                    <img alt="Professional headshot of David Wilson, a data scientist with a thoughtful expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/7TCbTzug9RdpSxx60K3zuz50Szv0z_PlpeKDfFW2uhU.jpg"/>
-                    <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
-                        <p class="text-xs mt-2">
-                            David Wilson is a Data Scientist with a strong background in machine learning and big data analytics. He has a passion for uncovering insights from complex data sets and developing predictive models that drive business decisions. David's expertise in data mining, statistical analysis, and algorithm development has helped organizations harness the power of data to achieve their strategic objectives.
-                        </p>
-                        <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
-                        <h3 class="text-lg font-bold">David Wilson</h3>
-                        <p class="text-sm">Data Scientist</p>
-                    </div>
-                </div>
-                <!-- Team Member 6 -->
-                <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="700">
-                    <img alt="Professional headshot of Sarah Johnson, a digital transformation consultant with a confident expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/SX0FemTo-waUE67fgtAyobtnLAU2jKLvgRo65VRn2UU.jpg"/>
-                    <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
-                        <p class="text-xs mt-2">
-                            Sarah Johnson is a Digital Transformation Consultant with a wealth of experience in helping organizations navigate and implement digital change. She specializes in developing digital strategies, optimizing business processes, and leveraging technology to drive innovation. Sarah's expertise in digital transformation has enabled numerous organizations to stay competitive in an ever-evolving digital landscape.
-                        </p>
-                        <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
-                        <h3 class="text-lg font-bold">Sarah Johnson</h3>
-                        <p class="text-sm">Digital Transformation Consultant</p>
-                    </div>
-                </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
+              <h3 class="text-lg font-bold">John Doe</h3>
+              <p class="text-sm">Senior Consultant</p>
             </div>
+          </div>
+          <!-- Team Member 2 -->
+          <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="300">
+            <img alt="Professional headshot of Jane Smith, a project manager with a confident expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/tHuENqd7Ydl9ImPqNTzwOe8Bqjv7ofV3-FHzQWv9qb0.jpg" />
+            <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
+              <p class="text-xs mt-2"> Jane Smith is a highly skilled Project Manager specializing in Cloud Solutions and Digital Transformation projects. With a strong background in managing large-scale implementations, Jane excels at coordinating cross-functional teams and ensuring projects are delivered on time and within budget. Her expertise in cloud technologies and digital strategies has helped numerous organizations achieve their transformation goals. </p>
+              <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
+              <h3 class="text-lg font-bold">Jane Smith</h3>
+              <p class="text-sm">Project Manager</p>
+            </div>
+          </div>
+          <!-- Team Member 3 -->
+          <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="400">
+            <img alt="Professional headshot of Michael Brown, a cybersecurity expert with a serious expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/dkuVpLjAzil-5liCkBcrFzuUECWn1XwH6g3xgsBSA0k.jpg" />
+            <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
+              <p class="text-xs mt-2"> Michael Brown is a Cybersecurity Expert with over 15 years of experience in the field. He has extensive knowledge in risk management, threat analysis, and security architecture. Michael has worked with various organizations to develop and implement robust security frameworks that protect critical assets and ensure compliance with industry standards. His dedication to cybersecurity helps clients stay ahead of emerging threats. </p>
+              <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
+              <h3 class="text-lg font-bold">Michael Brown</h3>
+              <p class="text-sm">Cybersecurity Expert</p>
+            </div>
+          </div>
+          <!-- Team Member 4 -->
+          <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="500">
+            <img alt="Professional headshot of Emily Davis, a cloud architect with a friendly smile and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/fbAKqZW7e4mraP_NAvAr6os71s9kn5-Bkf0QWNn6hlg.jpg" />
+            <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
+              <p class="text-xs mt-2"> Emily Davis is a Cloud Architect with a deep understanding of cloud technologies and infrastructure. She has a proven track record of designing and implementing scalable cloud solutions that drive business growth and innovation. Emily's expertise in cloud migration, architecture design, and cost optimization has helped numerous organizations transition to the cloud seamlessly and efficiently. </p>
+              <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
+              <h3 class="text-lg font-bold">Emily Davis</h3>
+              <p class="text-sm">Cloud Architect</p>
+            </div>
+          </div>
+          <!-- Team Member 5 -->
+          <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="600">
+            <img alt="Professional headshot of David Wilson, a data scientist with a thoughtful expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/7TCbTzug9RdpSxx60K3zuz50Szv0z_PlpeKDfFW2uhU.jpg" />
+            <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
+              <p class="text-xs mt-2"> David Wilson is a Data Scientist with a strong background in machine learning and big data analytics. He has a passion for uncovering insights from complex data sets and developing predictive models that drive business decisions. David's expertise in data mining, statistical analysis, and algorithm development has helped organizations harness the power of data to achieve their strategic objectives. </p>
+              <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
+              <h3 class="text-lg font-bold">David Wilson</h3>
+              <p class="text-sm">Data Scientist</p>
+            </div>
+          </div>
+          <!-- Team Member 6 -->
+          <div class="relative team-member w-full sm:w-1/3 lg:w-1/6" data-aos="fade-up" data-aos-delay="700">
+            <img alt="Professional headshot of Sarah Johnson, a digital transformation consultant with a confident expression and business attire" class="w-full h-[400px] object-cover" src="https://storage.googleapis.com/a1aa/image/SX0FemTo-waUE67fgtAyobtnLAU2jKLvgRo65VRn2UU.jpg" />
+            <div class="absolute inset-0 bg-pink-600 bg-opacity-60 flex flex-col items-center justify-center text-white opacity-0 transition-opacity duration-300 overlay p-5">
+              <p class="text-xs mt-2"> Sarah Johnson is a Digital Transformation Consultant with a wealth of experience in helping organizations navigate and implement digital change. She specializes in developing digital strategies, optimizing business processes, and leveraging technology to drive innovation. Sarah's expertise in digital transformation has enabled numerous organizations to stay competitive in an ever-evolving digital landscape. </p>
+              <button class="mt-4 px-4 py-2 border border-white text-white hover:bg-white hover:text-pink-600 transition">View More</button>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent text-white p-2 h-24 flex flex-col justify-center items-center info transition-opacity duration-300">
+              <h3 class="text-lg font-bold">Sarah Johnson</h3>
+              <p class="text-sm">Digital Transformation Consultant</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="flex flex-col md:flex-row mb-8 items-center mt-8" data-aos="fade-up" id="service">
+      <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
+        <h2 class="text-4xl font-bold text-center mb-8 flicker" data-aos="fade-down"> Career Opportunities</h2>
+      </div>
+      <div class="w-full md:w-2/3 p-4 md:border-t-4  gradient-border mobile-border-2">
+        <p class="text-lg text-left mb-8"></p>
+      </div>
+    </div>
+    <section>
+      <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6">
+        <div class="mx-auto px-4">
+          <h1 class="text-4xl font-bold text-center flicker" data-aos="fade-down"> Our Expertise </h1>
+        </div>
+      </div>
+      <div class="mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up">
+            <img alt="Icon representing Data Solutions and Engineering" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/s-40j7wSH-SMALjLBcNAPTZBUbPoxFPr-s6i0lO9-OE.jpg" width="100" />
+            <h2 class="text-2xl font-bold mb-4 text-center"> Data Solutions and Engineering </h2>
+            <p class="text-gray-700 text-justify mb-6"> Building robust data pipelines and architectures. Our data solutions and engineering services are designed to help organizations manage, process, and analyze large volumes of data efficiently. We specialize in creating scalable data architectures that can handle the growing demands of modern businesses. Our team of experts uses the latest technologies and best practices to ensure that your data is secure, reliable, and easily accessible. Whether you need to build a new data warehouse, migrate to the cloud, or optimize your existing data infrastructure, we have the expertise to help you achieve your goals. </p>
+            <div class="text-center">
+              <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#"> Learn More </a>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
+            <img alt="Icon representing BI Analytics" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/dzHP-FJ0oI3CZ7WIre2NUkeM37oe1Kwuhrn2d6B4_oI.jpg" width="100" />
+            <h2 class="text-2xl font-bold mb-4 text-center"> BI Analytics </h2>
+            <p class="text-gray-700 text-justify mb-6"> Transforming data into actionable insights. Our BI analytics services help organizations make data-driven decisions by providing them with the tools and insights they need to understand their data. We offer a range of services, including data visualization, dashboard development, and advanced analytics. Our team of experts works closely with clients to understand their unique needs and develop customized solutions that deliver real value. Whether you need to track key performance indicators, identify trends, or uncover hidden opportunities, our BI analytics services can help you achieve your objectives. </p>
+            <div class="text-center">
+              <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#"> Learn More </a>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
+            <img alt="Icon representing Cloud &amp; DevOps" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/8OsJuzlb8SrQXCub4npjBL1OaWT1-nuW7eK93jlmqNI.jpg" width="100" />
+            <h2 class="text-2xl font-bold mb-4 text-center"> Cloud &amp; DevOps </h2>
+            <p class="text-gray-700 text-justify mb-6"> Streamlining cloud operations and deployments. Our cloud and DevOps services are designed to help organizations leverage the power of the cloud to improve efficiency, scalability, and agility. We offer a range of services, including cloud migration, infrastructure as code, continuous integration and delivery, and automated testing. Our team of experts has extensive experience with leading cloud platforms and DevOps tools, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to move to the cloud, optimize your existing cloud infrastructure, or implement DevOps practices, we have the expertise to help you succeed. </p>
+            <div class="text-center">
+              <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#"> Learn More </a>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
+            <img alt="Icon representing AI &amp; Machine Learning" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/XFnVNOsmEzQkxxvAZXTusLzzr61w0EFnA0ZO82kxfc4.jpg" width="100" />
+            <h2 class="text-2xl font-bold mb-4 text-center"> AI &amp; Machine Learning </h2>
+            <p class="text-gray-700 text-justify mb-6"> Leveraging AI to drive innovation and efficiency. Our AI and machine learning services help organizations harness the power of artificial intelligence to solve complex problems and drive innovation. We offer a range of services, including predictive analytics, natural language processing, computer vision, and deep learning. Our team of experts has extensive experience with leading AI and machine learning frameworks and tools, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to automate processes, improve decision-making, or develop new AI-powered products and services, we have the expertise to help you succeed. </p>
+            <div class="text-center">
+              <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#"> Learn More </a>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
+            <img alt="Icon representing Cybersecurity" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/k2w37qjKmVRNVoQXjg17sEJ_en0fzBkAaf61izUZElY.jpg" width="100" />
+            <h2 class="text-2xl font-bold mb-4 text-center"> Cybersecurity </h2>
+            <p class="text-gray-700 text-justify mb-6"> Protecting your digital assets and data. Our cybersecurity services are designed to help organizations protect their digital assets and data from cyber threats. We offer a range of services, including vulnerability assessments, penetration testing, security monitoring, and incident response. Our team of experts has extensive experience with leading security tools and frameworks, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to improve your security posture, comply with regulatory requirements, or respond to a security incident, we have the expertise to help you achieve your goals. </p>
+            <div class="text-center">
+              <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#"> Learn More </a>
+            </div>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="500">
+            <img alt="Icon representing IT Consulting" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/ktGly9tDFj8QEdNnZ4G7Rs8eao3e4EcAJc5v-EDllDg.jpg" width="100" />
+            <h2 class="text-2xl font-bold mb-4 text-center"> IT Consulting </h2>
+            <p class="text-gray-700 text-justify mb-6"> Expert advice to optimize your IT strategy. Our IT consulting services are designed to help organizations optimize their IT strategy and achieve their business objectives. We offer a range of services, including IT strategy development, technology assessment, project management, and change management. Our team of experts has extensive experience with leading technologies and best practices, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to improve your IT infrastructure, implement new technologies, or manage a complex IT project, we have the expertise to help you succeed. </p>
+            <div class="text-center">
+              <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#"> Learn More </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-12 shadow-lg">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-8" data-aos="fade-up">Working Success</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Total Projects -->
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-lg font-bold mb-2">Successful IT Solutions Delivered</h3>
+            <div class="text-6xl font-bold text-blue-600">200+</div>
+          </div>
+          <!-- Completed Projects -->
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-lg font-bold mb-2">Completed Projects</h3>
+            <div class="text-6xl font-bold text-blue-600">150+</div>
+          </div>
+          <!-- Running Projects -->
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="300">
+            <h3 class="text-lg font-bold mb-2">Live Projects in Data Science, AI, and Cloud Solutions</h3>
+            <div class="text-6xl font-bold text-green-600">50+</div>
+          </div>
+          <!-- Happy Clients -->
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center" data-aos="fade-up" data-aos-delay="400">
+            <h3 class="text-lg font-bold mb-2">Happy Clients</h3>
+            <div class="text-6xl font-bold text-yellow-600">150+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="flex flex-col md:flex-row mb-8 items-center mt-8" data-aos="fade-up" id="career">
+      <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
+        <h2 class="text-4xl font-bold text-center mb-8 flicker" data-aos="fade-down"> Career Opportunities</h2>
+      </div>
+      <div class="w-full md:w-2/3 p-4 md:border-t-4  gradient-border mobile-border-2">
+        <p class="text-lg text-left mb-8"></p>
+      </div>
+    </div>
+    <!-- Career Opportunities Section -->
+    <section class="container mx-auto p-4">
+      <section class="bg-white p-6 rounded-lg shadow-lg mt-6" data-aos="fade-up">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2">
+            <img alt="A diverse team of professionals collaborating in a modern office environment" class="rounded-lg" height="400" src="https://storage.googleapis.com/a1aa/image/poLAAktEiMIemol2AcQwMIaV8R30Ap_jSDjQzXnf8Y8.jpg" width="600" />
+          </div>
+          <div class="md:w-1/2 md:pl-6 mt-4 md:mt-0">
+            <h2 class="text-3xl font-bold text-blue-600">We're Hiring! Join Our Team of Innovators</h2>
+            <p class="mt-4 text-lg">Are you ready to take your career to the next level? At [Company Name], we’re always on the lookout for forward-thinking, driven individuals to join our growing teams in Data Science, AI, Cloud Technologies, Cybersecurity, and more.</p>
+            <p class="mt-4 text-lg">Be part of a vibrant, diverse environment where your skills and ideas will directly contribute to transforming industries. We foster a culture of innovation, collaboration, and continuous learning. Here, you’ll have the opportunity to shape the future and push the boundaries of technology.</p>
+            <p class="mt-4 text-lg">Explore our career opportunities today, and let's make an impact together.</p>
+            <a class="mt-6 inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700" href="#">Explore Careers</a>
+          </div>
+        </div>
+      </section>
+      <section class="mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Data Science Card -->
+          <div class="Career-card bg-white rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <img alt="Data Science concept with charts and graphs" class="rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/pWL_dCOQTPQMc7yiKVo6vzDscU_fz4dhFcOo_r_kIX8.jpg" width="400" />
+            <div class="Career-card-title">Data Science</div>
+            <div class="Career-card-overlay">
+              <h4 class="text-xl font-bold mb-2">Data Science</h4>
+              <p class="text-center">Dive into data to uncover insights and drive decision-making. Work with large datasets, develop predictive models, and help businesses make data-driven decisions.</p>
+              <a class="Career-view-details" href="#">View Details</a>
+            </div>
+          </div>
+          <!-- AI Card -->
+          <div class="Career-card bg-white rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <img alt="Artificial Intelligence concept with neural network visualization" class="rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/bIUEeLjusgntQRUDycGpAhG-7SKtYnjH8CkcgWx55-0.jpg" width="400" />
+            <div class="Career-card-title">AI</div>
+            <div class="Career-card-overlay">
+              <h4 class="text-xl font-bold mb-2">AI</h4>
+              <p class="text-center">Develop intelligent systems that can learn and adapt. Work on machine learning algorithms, natural language processing, and computer vision projects.</p>
+              <a class="Career-view-details" href="#">View Details</a>
+            </div>
+          </div>
+          <!-- Cloud Technologies Card -->
+          <div class="Career-card bg-white rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+            <img alt="Cloud Technologies concept with cloud icons and servers" class="rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/sMzSxTQPfBV0sFJQPKdT1TyCHyrnwmhQVhBeWIMG2lw.jpg" width="400" />
+            <div class="Career-card-title">Cloud Technologies</div>
+            <div class="Career-card-overlay">
+              <h4 class="text-xl font-bold mb-2">Cloud Technologies</h4>
+              <p class="text-center">Build and manage scalable cloud infrastructure. Work with cloud platforms like AWS, Azure, and Google Cloud to deploy and maintain applications.</p>
+              <a class="Career-view-details" href="#">View Details</a>
+            </div>
+          </div>
+          <!-- Cybersecurity Card -->
+          <div class="Career-card bg-white rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="400">
+            <img alt="Cybersecurity concept with a lock and digital code" class="rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/x6F19_v0vdno9cKbg5ixoqcAArCQNqPJM7VCsjRG-So.jpg" width="400" />
+            <div class="Career-card-title">Cybersecurity</div>
+            <div class="Career-card-overlay">
+              <h4 class="text-xl font-bold mb-2">Cybersecurity</h4>
+              <p class="text-center">Protect systems and data from cyber threats. Implement security measures, conduct vulnerability assessments, and respond to security incidents.</p>
+              <a class="Career-view-details" href="#">View Details</a>
+            </div>
+          </div>
+          <!-- Software Development Card -->
+          <div class="Career-card bg-white rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="500">
+            <img alt="Software Development concept with code on a screen" class="rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/ZmiqmktCSO6puzpoID163SJbPCHnUR5mmrWfI6LLFGU.jpg" width="400" />
+            <div class="Career-card-title">Software Development</div>
+            <div class="Career-card-overlay">
+              <h4 class="text-xl font-bold mb-2">Software Development</h4>
+              <p class="text-center">Create innovative software solutions to solve complex problems. Work on web and mobile applications, backend systems, and more.</p>
+              <a class="Career-view-details" href="#">View Details</a>
+            </div>
+          </div>
+          <!-- Project Management Card -->
+          <div class="Career-card bg-white rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="600">
+            <img alt="Project Management concept with a Gantt chart" class="rounded-lg mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/z2sskQ5XYULP99yHpZGXre01T9pzCRy5rvxeE6grnJg.jpg" width="400" />
+            <div class="Career-card-title">Project Management</div>
+            <div class="Career-card-overlay">
+              <h4 class="text-xl font-bold mb-2">Project Management</h4>
+              <p class="text-center">Lead projects to success with effective planning and execution. Coordinate teams, manage timelines, and ensure project goals are met.</p>
+              <a class="Career-view-details" href="#">View Details</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <div id="case-studies"></div>
+    <!-- Careers & Hiring Section -->
+    <section class="py-16 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row mb-8 items-center" data-aos="fade-up">
+          <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
+            <h2 class="text-4xl font-bold text-center mb-8 flicker" data-aos="fade-down">Case Studies &amp; Success Stories</h2>
+          </div>
+          <div class="w-full md:w-2/3 p-4 md:border-t-4 md:border-r-4 gradient-border mobile-border">
+            <p class="text-lg text-left mb-8"> Explore how we’ve partnered with clients to deliver transformative solutions that drive success. Our approach combines cutting-edge technology, industry expertise, and a relentless focus on customer satisfaction. Here are a few examples of how we've made a lasting impact: </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-4">
+          <!-- Case Study 1 -->
+          <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+              <div class="mb-4">
+                <img alt="A healthcare provider using a cloud-based platform to manage patient records securely" class="w-full h-64 object-cover rounded" height="400" src="https://storage.googleapis.com/a1aa/image/6TM8OZC4V3Jql4iyCbgM6NguPrceiLy4cS6HbjQgeII.jpg" width="600" />
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-2xl font-bold mb-4">Empowering Healthcare Providers with Seamless Patient Data Management</h2>
+                <p>We designed and implemented a robust cloud-based platform for a leading healthcare provider, enabling them to securely manage patient records while ensuring compliance with HIPAA and industry regulations. The solution improved patient care delivery by providing real-time access to medical information, enhancing efficiency and decision-making.</p>
+              </div>
+              <div class="mt-4 text-center">
+                <a class="inline-block border border-blue-600 text-blue-600 py-2 px-4 rounded-lg text-sm font-bold hover:bg-blue-600 hover:text-white transition duration-300" href="#">View More</a>
+              </div>
+            </div>
+          </div>
+          <!-- Case Study 2 -->
+          <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8" data-aos="fade-up" data-aos-delay="300">
+            <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+              <div class="mb-4">
+                <img alt="A financial analyst reviewing AI-powered analytics on a computer screen" class="w-full h-64 object-cover rounded" height="400" src="https://storage.googleapis.com/a1aa/image/Uce8ZfL4buYErI3AZp0w738vvCbvUBsqfusB5-GazyI.jpg" width="600" />
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-2xl font-bold mb-4">Optimizing Financial Services with AI-Driven Insights</h2>
+                <p>For a global financial institution, we developed an AI-powered analytics engine that significantly improved risk management and fraud detection. This advanced system enhanced decision-making, reducing fraud incidents by 30% and driving a 25% increase in operational efficiency across key departments.</p>
+              </div>
+              <div class="mt-4 text-center">
+                <a class="inline-block border border-blue-600 text-blue-600 py-2 px-4 rounded-lg text-sm font-bold hover:bg-blue-600 hover:text-white transition duration-300" href="#">View More</a>
+              </div>
+            </div>
+          </div>
+          <!-- Case Study 3 -->
+          <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+              <div class="mb-4">
+                <img alt="An e-commerce website experiencing high traffic on a cloud-based infrastructure" class="w-full h-64 object-cover rounded" height="400" src="https://storage.googleapis.com/a1aa/image/D61uu6vIR8Cwf7DcvyFOsDlx8ByfgebQn4qfUOOfzLc.jpg" width="600" />
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-2xl font-bold mb-4">Building a Future-Proof Cloud Infrastructure for E-Commerce Giants</h2>
+                <p>We successfully migrated an e-commerce company to a scalable, cost-efficient cloud infrastructure, which handled an 80% surge in traffic during peak seasons. The migration reduced operational costs by 15% and positioned the company for future growth and scalability, ensuring a seamless customer experience even during high-demand periods.</p>
+              </div>
+              <div class="mt-4 text-center">
+                <a class="inline-block border border-blue-600 text-blue-600 py-2 px-4 rounded-lg text-sm font-bold hover:bg-blue-600 hover:text-white transition duration-300" href="#">View More</a>
+              </div>
+            </div>
+          </div>
+          <!-- Case Study 4 -->
+          <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8" data-aos="fade-up" data-aos-delay="500">
+            <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+              <div class="mb-4">
+                <img alt="A government agency's secure network with advanced cybersecurity measures" class="w-full h-64 object-cover rounded" height="400" src="https://storage.googleapis.com/a1aa/image/GgKgcsJPFJHttu5qFd0gsqFi0iKw31jjp47WBo7tuqw.jpg" width="600" />
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-2xl font-bold mb-4">Enhancing Cybersecurity for Government Agencies</h2>
+                <p>In a project with a government agency, we engineered a comprehensive cybersecurity framework based on Zero Trust principles. By securing their network with state-of-the-art encryption and access control, we ensured that sensitive data remained fully protected against evolving cyber threats, supporting the agency’s compliance with stringent national security policies.</p>
+              </div>
+              <div class="mt-4 text-center">
+                <a class="inline-block border border-blue-600 text-blue-600 py-2 px-4 rounded-lg text-sm font-bold hover:bg-blue-600 hover:text-white transition duration-300" href="#">View More</a>
+              </div>
+            </div>
+          </div>
+          <!-- View All Case Studies Button -->
+          <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="600">
+            <a class="inline-block bg-blue-600 text-white py-3 px-6 rounded-lg text-lg font-bold hover:bg-blue-700 transition duration-300" href="#">View Our Case Studies</a>
+          </div>
         </div>
     </section>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
- <section>
-   <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-6">
-    <div class="mx-auto px-4">
-     <h1 class="text-4xl font-bold text-center flicker" data-aos="fade-down">
-      Our Expertise
-     </h1>
-    </div>
-   </div>
-   <div class="mx-auto px-4 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up">
-      <img alt="Icon representing Data Solutions and Engineering" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/s-40j7wSH-SMALjLBcNAPTZBUbPoxFPr-s6i0lO9-OE.jpg" width="100"/>
-      <h2 class="text-2xl font-bold mb-4 text-center">
-       Data Solutions and Engineering
-      </h2>
-      <p class="text-gray-700 text-justify mb-6">
-       Building robust data pipelines and architectures. Our data solutions and engineering services are designed to help organizations manage, process, and analyze large volumes of data efficiently. We specialize in creating scalable data architectures that can handle the growing demands of modern businesses. Our team of experts uses the latest technologies and best practices to ensure that your data is secure, reliable, and easily accessible. Whether you need to build a new data warehouse, migrate to the cloud, or optimize your existing data infrastructure, we have the expertise to help you achieve your goals.
-      </p>
-      <div class="text-center">
-       <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#">
-        Learn More
-       </a>
-      </div>
-     </div>
-     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="100">
-      <img alt="Icon representing BI Analytics" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/dzHP-FJ0oI3CZ7WIre2NUkeM37oe1Kwuhrn2d6B4_oI.jpg" width="100"/>
-      <h2 class="text-2xl font-bold mb-4 text-center">
-       BI Analytics
-      </h2>
-      <p class="text-gray-700 text-justify mb-6">
-       Transforming data into actionable insights. Our BI analytics services help organizations make data-driven decisions by providing them with the tools and insights they need to understand their data. We offer a range of services, including data visualization, dashboard development, and advanced analytics. Our team of experts works closely with clients to understand their unique needs and develop customized solutions that deliver real value. Whether you need to track key performance indicators, identify trends, or uncover hidden opportunities, our BI analytics services can help you achieve your objectives.
-      </p>
-      <div class="text-center">
-       <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#">
-        Learn More
-       </a>
-      </div>
-     </div>
-     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="200">
-      <img alt="Icon representing Cloud &amp; DevOps" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/8OsJuzlb8SrQXCub4npjBL1OaWT1-nuW7eK93jlmqNI.jpg" width="100"/>
-      <h2 class="text-2xl font-bold mb-4 text-center">
-       Cloud &amp; DevOps
-      </h2>
-      <p class="text-gray-700 text-justify mb-6">
-       Streamlining cloud operations and deployments. Our cloud and DevOps services are designed to help organizations leverage the power of the cloud to improve efficiency, scalability, and agility. We offer a range of services, including cloud migration, infrastructure as code, continuous integration and delivery, and automated testing. Our team of experts has extensive experience with leading cloud platforms and DevOps tools, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to move to the cloud, optimize your existing cloud infrastructure, or implement DevOps practices, we have the expertise to help you succeed.
-      </p>
-      <div class="text-center">
-       <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#">
-        Learn More
-       </a>
-      </div>
-     </div>
-     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="300">
-      <img alt="Icon representing AI &amp; Machine Learning" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/XFnVNOsmEzQkxxvAZXTusLzzr61w0EFnA0ZO82kxfc4.jpg" width="100"/>
-      <h2 class="text-2xl font-bold mb-4 text-center">
-       AI &amp; Machine Learning
-      </h2>
-      <p class="text-gray-700 text-justify mb-6">
-       Leveraging AI to drive innovation and efficiency. Our AI and machine learning services help organizations harness the power of artificial intelligence to solve complex problems and drive innovation. We offer a range of services, including predictive analytics, natural language processing, computer vision, and deep learning. Our team of experts has extensive experience with leading AI and machine learning frameworks and tools, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to automate processes, improve decision-making, or develop new AI-powered products and services, we have the expertise to help you succeed.
-      </p>
-      <div class="text-center">
-       <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#">
-        Learn More
-       </a>
-      </div>
-     </div>
-     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="400">
-      <img alt="Icon representing Cybersecurity" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/k2w37qjKmVRNVoQXjg17sEJ_en0fzBkAaf61izUZElY.jpg" width="100"/>
-      <h2 class="text-2xl font-bold mb-4 text-center">
-       Cybersecurity
-      </h2>
-      <p class="text-gray-700 text-justify mb-6">
-       Protecting your digital assets and data. Our cybersecurity services are designed to help organizations protect their digital assets and data from cyber threats. We offer a range of services, including vulnerability assessments, penetration testing, security monitoring, and incident response. Our team of experts has extensive experience with leading security tools and frameworks, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to improve your security posture, comply with regulatory requirements, or respond to a security incident, we have the expertise to help you achieve your goals.
-      </p>
-      <div class="text-center">
-       <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#">
-        Learn More
-       </a>
-      </div>
-     </div>
-     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="500">
-      <img alt="Icon representing IT Consulting" class="mx-auto mb-6" height="100" src="https://storage.googleapis.com/a1aa/image/ktGly9tDFj8QEdNnZ4G7Rs8eao3e4EcAJc5v-EDllDg.jpg" width="100"/>
-      <h2 class="text-2xl font-bold mb-4 text-center">
-       IT Consulting
-      </h2>
-      <p class="text-gray-700 text-justify mb-6">
-       Expert advice to optimize your IT strategy. Our IT consulting services are designed to help organizations optimize their IT strategy and achieve their business objectives. We offer a range of services, including IT strategy development, technology assessment, project management, and change management. Our team of experts has extensive experience with leading technologies and best practices, and we work closely with clients to develop customized solutions that meet their specific needs. Whether you are looking to improve your IT infrastructure, implement new technologies, or manage a complex IT project, we have the expertise to help you succeed.
-      </p>
-      <div class="text-center">
-       <a class="inline-block bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors duration-300" href="#">
-        Learn More
-       </a>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-
-  <!-- Careers & Hiring Section -->
-  <section class="py-16 bg-gray-100">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row mb-8 items-center" data-aos="fade-up">
-        <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
-          <h2 class="text-4xl font-bold text-center mb-8">Shape the Future with Us</h2>
-        </div>
-        <div class="w-full md:w-2/3 p-4 md:border-t-4 md:border-r-4 gradient-border mobile-border">
-          <p class="text-lg text-left mb-8">
-            We’re seeking innovative minds to join our growing team in Data, AI, Cloud, and Security. If you're passionate about pushing boundaries and driving digital transformation, explore our open roles. Be a part of a team that is changing the tech landscape.
-          </p>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row items-center mb-8">
-        <div class="w-full md:w-1/3 p-4 relative card" data-aos="fade-up" data-aos-delay="100">
-          <div class="relative rounded-lg shadow-lg overflow-hidden">
-            <img alt="Team collaboration in a modern workspace" class="w-full h-full object-cover" src="https://storage.googleapis.com/a1aa/image/TIHXWz1CyrF7GDbFx-Qr9I7IKkNLxDRfyPBVR4z-ULg.jpg"/>
-            <div class="absolute inset-0 m-6 bg-pink-500 bg-opacity-75 flex flex-col justify-center items-center text-white p-4 rounded-lg overlay opacity-0 transition-opacity duration-300">
-              <h3 class="text-2xl font-bold mb-2 text-center">Collaborative Environment</h3>
-              <p class="mb-4 text-center">Our team thrives in a collaborative environment where ideas are shared and innovation is encouraged. Join us to work with like-minded professionals.</p>
-              <a class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300" href="/careers">Learn More</a>
-            </div>
-            <div class="absolute bottom-0 left-0 w-full bg-white bg-opacity-75 p-4 rounded-b-lg shadow-lg title transition-opacity duration-300">
-              <h3 class="text-2xl font-bold mb-2 text-center">Collaborative Environment</h3>
-            </div>
+    <!-- Contact & Final CTA Section -->
+    <div id="contact"></div>
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row mb-8 items-center" data-aos="fade-up">
+          <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
+            <h2 class="text-4xl font-bold text-center mb-8 flicker" data-aos="fade-down">Get in Touch With Us</h2>
+          </div>
+          <div class="w-full md:w-2/3 p-4 md:border-t-4 md:border-r-4 gradient-border mobile-border">
+            <p class="text-lg text-left mb-8">Connect with us by filling out the form below, or reach out directly via our social media channels. We look forward to hearing from you.</p>
           </div>
         </div>
-        <div class="w-full md:w-1/3 p-4 relative card" data-aos="fade-up" data-aos-delay="200">
-          <div class="relative rounded-lg shadow-lg overflow-hidden">
-            <img alt="Innovative workspace with tech gadgets" class="w-full h-full object-cover" src="https://storage.googleapis.com/a1aa/image/omNSOkiy6byjjXHBdHtiIU_UY4D_r9BamXV3LGcw_L0.jpg"/>
-            <div class="absolute inset-0 m-6 bg-pink-500 bg-opacity-75 flex flex-col justify-center items-center text-white p-4 rounded-lg overlay opacity-0 transition-opacity duration-300">
-              <h3 class="text-2xl font-bold mb-2 text-center">Cutting-Edge Technology</h3>
-              <p class="mb-4 text-center">We provide our team with the latest technology and tools to ensure they can perform at their best. Be a part of a company that invests in its people.</p>
-              <a class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300" href="/careers">Learn More</a>
-            </div>
-            <div class="absolute bottom-0 left-0 w-full bg-white bg-opacity-75 p-4 rounded-b-lg shadow-lg title transition-opacity duration-300">
-              <h3 class="text-2xl font-bold mb-2 text-center">Cutting-Edge Technology</h3>
+        <div class="flex flex-wrap justify-center mb-8">
+          <div class="w-full md:w-1/2 p-4" data-aos="fade-right">
+            <div class="bg-gray-100 p-8 rounded-lg mb-8">
+              <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+              <p class="mb-4">
+                <i class="fas fa-phone-alt mr-2 text-blue-500"></i>+1 (123) 456-7890
+              </p>
+              <p class="mb-4">
+                <i class="fas fa-envelope mr-2 text-blue-500"></i>info@company.com
+              </p>
+              <p class="mb-4">
+                <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>123 Tech Street, Innovation City, TX 12345
+              </p>
+              <div class="w-full md:w-[650px] h-64">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5335836.881393699!2d-9.804291500189626!3d55.2036163377974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25a3b1142c791a9%3A0xc4f8a0433288257a!2sUnited%20Kingdom!5e1!3m2!1sen!2sbd!4v1739538028324!5m2!1sen!2sbd" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
             </div>
           </div>
+          <div class="w-full md:w-1/2 p-4" data-aos="fade-left">
+            <form class="bg-gray-100 p-8 rounded-lg shadow-lg">
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
+                <input class="w-full p-3 border border-gray-300 rounded-lg" id="name" placeholder="Your Name" type="text" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
+                <input class="w-full p-3 border border-gray-300 rounded-lg" id="email" placeholder="Your Email" type="email" />
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="message">Message</label>
+                <textarea class="w-full p-3 border border-gray-300 rounded-lg" id="message" placeholder="Your Message" rows="5"></textarea>
+              </div>
+              <div class="text-center">
+                <button class="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300" type="submit">Contact Us Now</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="w-full md:w-1/3 p-4 relative card" data-aos="fade-up" data-aos-delay="300">
-          <div class="relative rounded-lg shadow-lg overflow-hidden">
-            <img alt="Employees enjoying a team-building activity" class="w-full h-full object-cover" src="https://storage.googleapis.com/a1aa/image/EGvsHQyIWfJia1yR3xTr_-nCxZiGPfc-u4TTJ2-pV_Q.jpg"/>
-            <div class="absolute inset-0 m-6 bg-pink-500 bg-opacity-75 flex flex-col justify-center items-center text-white p-4 rounded-lg overlay opacity-0 transition-opacity duration-300">
-              <h3 class="text-2xl font-bold mb-2 text-center">Team Building</h3>
-              <p class="mb-4 text-center">We believe in the power of teamwork and regularly organize team-building activities to strengthen our bonds and foster a positive work culture.</p>
-              <a class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300" href="/careers">Learn More</a>
-            </div>
-            <div class="absolute bottom-0 left-0 w-full bg-white bg-opacity-75 p-4 rounded-b-lg shadow-lg title transition-opacity duration-300">
-              <h3 class="text-2xl font-bold mb-2 text-center">Team Building</h3>
-            </div>
+        <div class="text-center" data-aos="fade-up">
+          <p class="text-lg mb-4">Or connect with us on social media:</p>
+          <div class="flex justify-center space-x-4">
+            <a class="text-blue-700 text-2xl" href="https://www.linkedin.com">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a class="text-blue-700 text-2xl" href="https://www.twitter.com">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a class="text-blue-700 text-2xl" href="https://www.facebook.com">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a class="text-blue-700 text-2xl" href="https://www.instagram.com">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a class="text-blue-700 text-2xl" href="https://telegram.org/">
+              <i class="fa-brands fa-telegram"></i>
+            </a>
           </div>
         </div>
       </div>
-      <div class="text-center" data-aos="fade-up" data-aos-delay="400">
-        <a class="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300" href="/careers">Explore Open Roles</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact & Final CTA Section -->
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row mb-8 items-center" data-aos="fade-up">
-        <div class="w-full md:w-1/3 p-4 border-b-4 border-r-4 gradient-border">
-          <h2 class="text-4xl font-bold text-center mb-8">Get in Touch With Us</h2>
-        </div>
-        <div class="w-full md:w-2/3 p-4 md:border-t-4 md:border-r-4 gradient-border mobile-border">
-          <p class="text-lg text-left mb-8">Connect with us by filling out the form below, or reach out directly via our social media channels. We look forward to hearing from you.</p>
-        </div>
-      </div>
-      <div class="flex flex-wrap justify-center mb-8">
-        <div class="w-full md:w-1/2 p-4" data-aos="fade-right">
-          <div class="bg-gray-100 p-8 rounded-lg mb-8">
-            <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
-            <p class="mb-4"><i class="fas fa-phone-alt mr-2 text-blue-500"></i>+1 (123) 456-7890</p>
-            <p class="mb-4"><i class="fas fa-envelope mr-2 text-blue-500"></i>info@company.com</p>
-            <p class="mb-4"><i class="fas fa-map-marker-alt mr-2 text-blue-500"></i>123 Tech Street, Innovation City, TX 12345</p>
-            <div class="w-full md:w-[650px] h-64">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5335836.881393699!2d-9.804291500189626!3d55.2036163377974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25a3b1142c791a9%3A0xc4f8a0433288257a!2sUnited%20Kingdom!5e1!3m2!1sen!2sbd!4v1739538028324!5m2!1sen!2sbd"  height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+    <footer class="bg-gray-900 text-white py-10">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-between md:justify-start">
+          <!-- Company Information -->
+          <div class="w-full md:w-1/3 mb-6 md:mb-0 text-center md:text-left" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="text-xl font-bold mb-2">Shivom</h2>
+            <p class="text-gray-400">Shivom is a leading IT consultancy specializing in Data, AI, Cloud, Security, and Digital Transformation.</p>
+            <!-- Newsletter Signup -->
+            <div class="mt-6">
+              <h2 class="text-xl font-bold mb-2">Subscribe to our Newsletter</h2>
+              <form class="flex flex-wrap justify-center md:justify-start">
+                <input type="email" placeholder="Enter your email" class="w-full md:w-2/4 p-2 mb-4 md:mb-0 md:mr-2 rounded bg-gray-800 text-gray-400">
+                <button type="submit" class="w-full md:w-1/3 p-2 rounded bg-blue-600 hover:bg-blue-700 text-white">Subscribe</button>
+              </form>
+            </div>
+          </div>
+          <!-- Quick Links -->
+          <div class="w-full md:w-1/3 mb-6 md:mb-0 text-center " data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-xl font-bold mb-2">Quick Links</h2>
+            <ul class="text-gray-400">
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">About Us</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Services</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Case Studies</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Careers</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Contact Us</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Blog</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Contact Information -->
+          <div class="w-full md:w-1/3 mb-6 md:mb-0 text-center md:text-left" data-aos="fade-up" data-aos-delay="300">
+            <h2 class="text-xl font-bold mb-2">Contact Information</h2>
+            <p class="text-gray-400 mb-2">1234 Shivom Street, London, UK</p>
+            <p class="text-gray-400 mb-2">Phone: +44 123 456 7890</p>
+            <p class="text-gray-400 mb-2">Email: <a href="mailto:info@shivom.co.uk" class="hover:text-white">info@shivom.co.uk</a>
+            </p>
+            <!-- Social Media Icons -->
+            <div class="flex justify-center md:justify-start space-x-4 mt-4">
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-twitter"></i>
+              </a>
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/2 p-4" data-aos="fade-left">
-          <form class="bg-gray-100 p-8 rounded-lg shadow-lg">
-            <div class="mb-4">
-              <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
-              <input class="w-full p-3 border border-gray-300 rounded-lg" id="name" placeholder="Your Name" type="text"/>
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-700 font-bold mb-2" for="email">Email</label>
-              <input class="w-full p-3 border border-gray-300 rounded-lg" id="email" placeholder="Your Email" type="email"/>
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-700 font-bold mb-2" for="message">Message</label>
-              <textarea class="w-full p-3 border border-gray-300 rounded-lg" id="message" placeholder="Your Message" rows="5"></textarea>
-            </div>
-            <div class="text-center">
-              <button class="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300" type="submit">Contact Us Now</button>
-            </div>
-          </form>
+        <div class="flex flex-wrap justify-between md:justify-start mt-10">
+          <!-- Privacy & Legal Links -->
+          <div class="w-full md:w-1/2 mb-6 md:mb-0 text-center md:text-left" data-aos="fade-up" data-aos-delay="400">
+            <ul class=" flex col gap-20 text-gray-400">
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="hover:text-white">Terms of Service</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Copyright Notice -->
+          <div class="w-full md:w-1/2 text-center md:text-right" data-aos="fade-up" data-aos-delay="500">
+            <p class="text-gray-400">© 2025 AM-soft-it.ltd. Design by Md. Aminur Islam</p>
+          </div>
         </div>
       </div>
-      <div class="text-center" data-aos="fade-up">
-        <p class="text-lg mb-4">Or connect with us on social media:</p>
-        <div class="flex justify-center space-x-4">
-          <a class="text-blue-700 text-2xl" href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a>
-          <a class="text-blue-700 text-2xl" href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
-          <a class="text-blue-700 text-2xl" href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
-          <a class="text-blue-700 text-2xl" href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
-          <a class="text-blue-700 text-2xl" href="https://telegram.org/"><i class="fa-brands fa-telegram"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-	
-	 <footer class="bg-gray-900 text-white py-10">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between md:justify-start">
-                <!-- Company Information -->
-                <div class="w-full md:w-1/3 mb-6 md:mb-0 text-center md:text-left" data-aos="fade-up" data-aos-delay="100">
-                    <h2 class="text-xl font-bold mb-2">Shivom</h2>
-                    <p class="text-gray-400">Shivom is a leading IT consultancy specializing in Data, AI, Cloud, Security, and Digital Transformation.</p>
-                    <!-- Newsletter Signup -->
-                    <div class="mt-6">
-                        <h2 class="text-xl font-bold mb-2">Subscribe to our Newsletter</h2>
-                        <form class="flex flex-wrap justify-center md:justify-start">
-                            <input type="email" placeholder="Enter your email" class="w-full md:w-2/4 p-2 mb-4 md:mb-0 md:mr-2 rounded bg-gray-800 text-gray-400">
-                            <button type="submit" class="w-full md:w-1/3 p-2 rounded bg-blue-600 hover:bg-blue-700 text-white">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Quick Links -->
-                <div class="w-full md:w-1/3 mb-6 md:mb-0 text-center " data-aos="fade-up" data-aos-delay="200">
-                    <h2 class="text-xl font-bold mb-2">Quick Links</h2>
-                    <ul class="text-gray-400">
-                        <li class="mb-2"><a href="#" class="hover:text-white">About Us</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-white">Services</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-white">Case Studies</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-white">Careers</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-white">Contact Us</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-white">Blog</a></li>
-                    </ul>
-                </div>
-                <!-- Contact Information -->
-                <div class="w-full md:w-1/3 mb-6 md:mb-0 text-center md:text-left" data-aos="fade-up" data-aos-delay="300">
-                    <h2 class="text-xl font-bold mb-2">Contact Information</h2>
-                    <p class="text-gray-400 mb-2">1234 Shivom Street, London, UK</p>
-                    <p class="text-gray-400 mb-2">Phone: +44 123 456 7890</p>
-                    <p class="text-gray-400 mb-2">Email: <a href="mailto:info@shivom.co.uk" class="hover:text-white">info@shivom.co.uk</a></p>
-                    <!-- Social Media Icons -->
-                    <div class="flex justify-center md:justify-start space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-wrap justify-between md:justify-start mt-10">
-                <!-- Privacy & Legal Links -->
-                <div class="w-full md:w-1/2 mb-6 md:mb-0 text-center md:text-left" data-aos="fade-up" data-aos-delay="400">
-                    <ul class=" flex col gap-20 text-gray-400">
-                        <li class="mb-2"><a href="#" class="hover:text-white">Privacy Policy</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-white">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <!-- Copyright Notice -->
-                <div class="w-full md:w-1/2 text-center md:text-right" data-aos="fade-up" data-aos-delay="500">
-                    <p class="text-gray-400">© 2025 AM-soft-it.ltd. Design by Md. Aminur Islam</p>
-                </div>
-            </div>
-        </div>
-    <!-- </footer -->
-  <!-- AOS JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-  
-
-    // Initialize AOS
-    AOS.init({
-      duration: 1200, // Animation duration
-      once: true, // Whether animation should happen only once
-    });
-	document.getElementById('search-icon').addEventListener('click', function() {
-        var searchInput = document.getElementById('search-input');
-        if (searchInput.classList.contains('hidden')) {
+      <!-- </footer -->
+      <!-- AOS JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+      <script>
+        // Initialize AOS
+        AOS.init({
+          duration: 1200, // Animation duration
+          once: true, // Whether animation should happen only once
+        });
+        document.getElementById('search-icon').addEventListener('click', function() {
+          var searchInput = document.getElementById('search-input');
+          if (searchInput.classList.contains('hidden')) {
             searchInput.classList.remove('hidden');
             searchInput.focus();
-        } else {
+          } else {
             searchInput.classList.add('hidden');
-        }
-    });
-  AOS.init();
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        var mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu.classList.contains('hidden')) {
+          }
+        });
+        AOS.init();
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+          var mobileMenu = document.getElementById('mobile-menu');
+          if (mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.remove('hidden');
-        } else {
+          } else {
             mobileMenu.classList.add('hidden');
-        }
-    });
-  </script>
-</body>
+          }
+        });
+      </script>
+  </body>
 </html>
